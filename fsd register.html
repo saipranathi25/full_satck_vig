@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Online Quiz Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .register-container {
+            margin-top: 100px;
+            display: inline-block;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        input {
+            margin: 10px 0;
+            padding: 12px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <input type="text" id="username" placeholder="Username" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Validation for username and password
+            if (username.length >= 8 && username.length <= 40 &&
+                password.length >= 6 && password.length <= 20 &&
+                /[A-Z]/.test(password) && /[a-z]/.test(password) &&
+                /\d/.test(password) && /[@$!%*#?&]/.test(password)) {
+
+                // Simulate successful registration
+                alert("Registration successful! Redirecting to the login page...");
+                window.location.href = "fsg login.html"; // Redirect to login page
+            } else {
+                let errorMessage = "Please ensure:\n";
+                if (username.length < 8 || username.length > 40) {
+                    errorMessage += "- Username must be between 8 and 40 characters.\n";
+                }
+                if (password.length < 6 || password.length > 20) {
+                    errorMessage += "- Password must be between 6 and 20 characters.\n";
+                }
+                if (!/[A-Z]/.test(password)) {
+                    errorMessage += "- Password must contain at least one uppercase letter.\n";
+                }
+                if (!/[a-z]/.test(password)) {
+                    errorMessage += "- Password must contain at least one lowercase letter.\n";
+                }
+                if (!/\d/.test(password)) {
+                    errorMessage += "- Password must contain at least one digit.\n";
+                }
+                if (!/[@$!%*#?&]/.test(password)) {
+                    errorMessage += "- Password must contain at least one special character.\n";
+                }
+                alert(errorMessage);
+            }
+        });
+    </script>
+</body>
+</html>
